@@ -1,0 +1,17 @@
+<div class="product-list">
+  <div class="product-card" *ngFor="let product of products">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>Stock: {{ product.stock }}</p>
+    <input type="number" min="1" [max]="product.stock" [(ngModel)]="quantity" class="quantity-input" />
+    <button (click)="addToCart(product, quantity)" class="add-to-cart-button">Add to Cart</button>
+  </div>
+</div>
+
+<!-- Go to Cart Button -->
+<div class="cart-summary">
+  <button (click)="goToCart()" class="go-to-cart-button">
+    Go to Cart ({{ cartService.getItemCount() }})
+  </button>
+</div>
