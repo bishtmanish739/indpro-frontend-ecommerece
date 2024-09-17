@@ -1,0 +1,32 @@
+<div class="container">
+    <header class="header">
+      <h1>Responsive Webpage</h1>
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li>Home</li>
+          <li>About</li>
+          <li>Services</li>
+          <li>Contact</li>
+        </ul>
+        <button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
+      </nav>
+    </header>
+  
+    <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Services</li>
+        <li>Contact</li>
+      </ul>
+    </aside>
+  
+    <main class="main-content">
+      <p>This is first question of IndProAssignment.</p>
+    </main>
+  
+    <footer class="footer">
+      <p>&copy; 2024 IndPro </p>
+    </footer>
+  </div>
+  
