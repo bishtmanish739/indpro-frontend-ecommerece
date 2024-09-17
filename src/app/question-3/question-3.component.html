@@ -1,0 +1,17 @@
+<div class="owner-details" *ngIf="owner">
+  <img [src]="owner.avatar_url" alt="Owner's Avatar" class="avatar">
+  <h2>{{ owner.login }}</h2>
+  <a [href]="owner.html_url" target="_blank">View GitHub Profile</a>
+</div>
+
+<div class="repo-list">
+  <div *ngFor="let repo of repositories" class="repo-item">
+    <h3>{{ repo.name }}</h3>
+    <p>{{ repo.description || 'No description available' }}</p>
+    <p>Status: {{ repo.private ? 'Private' : 'Public' }}</p>
+    <button (click)="openRepo(repo.html_url)">View Repository</button>
+  </div>
+</div>
+
+<!-- Load more button for pagination/infinite scroll -->
+<button (click)="loadMore()" class="load-more">Load More</button>
