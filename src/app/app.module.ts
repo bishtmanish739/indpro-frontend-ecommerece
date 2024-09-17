@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Question1Component } from './question-1/question-1.component';
 import { Question2Component } from './question-2/question-2.component';
 import { Question3Component } from './question-3/question-3.component';
+import { Question4Component } from './question-4/question-4.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { Question3Component } from './question-3/question-3.component';
     CartComponent,
     Question1Component,
     Question2Component,
-    Question3Component
+    Question3Component,
+    Question4Component
   ],
   imports: [
     BrowserModule,
