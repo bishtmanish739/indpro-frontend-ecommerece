@@ -1,0 +1,69 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched) }"
+      />
+      <div *ngIf="form.get('name')?.errors?.['required'] && (form.get('name')?.dirty || form.get('name')?.touched)" class="error-message">
+        Name is required.
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) }"
+      />
+      <div *ngIf="form.get('email')?.errors?.['required'] && (form.get('email')?.dirty || form.get('email')?.touched)" class="error-message">
+        Email is required.
+      </div>
+      <div *ngIf="form.get('email')?.errors?.['email'] && (form.get('email')?.dirty || form.get('email')?.touched)" class="error-message">
+        Enter a valid email address.
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched) }"
+      />
+      <div *ngIf="form.get('password')?.errors?.['required'] && (form.get('password')?.dirty || form.get('password')?.touched)" class="error-message">
+        Password is required.
+      </div>
+      <div *ngIf="form.get('password')?.errors?.['minlength'] && (form.get('password')?.dirty || form.get('password')?.touched)" class="error-message">
+        Password must be at least 8 characters long.
+      </div>
+    </div>
+
+    <!-- Confirm Password Field -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+        [ngClass]="{ 'is-invalid': form.get('confirmPassword')?.invalid && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched) }"
+      />
+      <div *ngIf="form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)" class="error-message">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <!-- Submit Button (Always Enabled) -->
+    <button type="submit">Submit</button>
+  </form>
+</div>
