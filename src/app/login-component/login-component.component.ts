@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent {
-  loginForm!: FormGroup; // Use definite assignment assertion
+  loginForm!: FormGroup; 
 
   constructor(private fb: FormBuilder, private router: Router) {}
 

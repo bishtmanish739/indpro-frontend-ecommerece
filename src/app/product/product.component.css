@@ -2,6 +2,9 @@
   .sidebar-toggle {
     display: none; /* Hide by default */
   }
+  .toggle-cart{
+    display: none;
+  }
   .header {
     grid-area: header;
     background-color: #3f51b5;
@@ -65,13 +68,24 @@
   }
 
   @media (max-width: 768px) {
+    .toggle-cart{
+      display: flex;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 10px;
+      color: inherit;
+    }
+  }
+  @media (max-width: 768px) {
     .sidebar-toggle {
       display: block;
       background: none;
       border: none;
       font-size: 24px;
       cursor: pointer;
-      margin-right: 30px;
+      margin-right: 10px;
       color: inherit;
     }
   }
@@ -133,19 +147,7 @@ p {
   text-align: center;
 }
 
-.go-to-cart-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-}
 
-.go-to-cart-button:hover {
-  background-color: #0056b3;
-}
 
 
 /* cart icon design */
