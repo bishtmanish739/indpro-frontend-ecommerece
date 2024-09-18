@@ -1,9 +1,33 @@
+<header class="header">
+  <h1>IndPro Shop</h1>
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li>Home</li>
+      <li>About</li>
+      <li>Services</li>
+      <li>Contact</li>
+      <button (click)="goToCart()" class="go-to-cart-button">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge">{{ cartService.getItemCount() }}</span>
+      </button>
+    </ul>
+    <button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
+  </nav>
+</header>
+<aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+  <ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Services</li>
+    <li>Contact</li>
+  </ul>
+</aside>
 <div class="product-list">
   <div class="product-card" *ngFor="let product of products">
+    <img [src]="product.productUrl" class="product-image"/>
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
-    <p>Stock: {{ product.stock }}</p>
+    <p>Price: {{ product.price }} $</p>
     <input type="number" min="1" [max]="product.stock" [(ngModel)]="quantity" class="quantity-input" />
     <button (click)="addToCart(product, quantity)" class="add-to-cart-button">Add to Cart</button>
   </div>

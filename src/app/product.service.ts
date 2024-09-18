@@ -23,4 +23,5 @@ export interface Product {
   stock: number;
   createdAt: string;
   orderItems: any[];
+  productUrl:string;
 }

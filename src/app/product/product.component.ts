@@ -19,6 +19,11 @@ export class ProductComponent implements OnInit {
       this.products = products;
     });
   }
+  isSidebarCollapsed = true;
+
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 
   addToCart(product: Product, quantity: number) {
     this.cartService.addToCart(product, quantity);
