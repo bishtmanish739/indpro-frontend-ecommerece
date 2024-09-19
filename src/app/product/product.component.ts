@@ -11,8 +11,17 @@ import { Router } from '@angular/router';
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   quantity: number = 1;
+  userLoggedIn: boolean=false;
 
   constructor(private productService: ProductService, public cartService: CartService,public router:Router) { }
+  login(){
+    this.router.navigate(['/login'],{replaceUrl:true});
+  }
+  logout(){
+    localStorage.clear();
+    this.userLoggedIn=false;
+    this.router.navigate(['/login'],{replaceUrl:true});
+  }
   myOrders(){
     let token=localStorage.getItem('authToken');
     if(token!=null){
@@ -26,6 +35,12 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let token=localStorage.getItem('authToken');
+    if(token!=null){
+      this.userLoggedIn=true;
+
+    }
+    
     this.productService.getProducts().subscribe(products => {
       this.products = products;
     });

@@ -2,40 +2,40 @@
   <h1>IndPro Shop</h1>
   <nav class="navbar">
     <ul class="nav-list">
-      <li>Home</li>
-      <li>About</li>
-      <li>Services</li>
-      <li>Contact</li>
-      <li (click)="myOrders()">My Orders</li>
+      <li (click)="myOrders()" class="margin">My Orders</li>
       <button (click)="goToCart()" class="go-to-cart-button">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">{{ cartService.getItemCount() }}</span>
       </button>
+      <i (click)="login()" class="fas fa-sign-in-alt go-to-cart-button margin" *ngIf="!userLoggedIn"></i>
+      <i (click)="logout()" class="fas fa-sign-out-alt go-to-cart-button margin" *ngIf="userLoggedIn"></i>
+
+
+
+     
     </ul>
     <div class="toggle-cart">
-     
+
       <button (click)="goToCart()" class="go-to-cart-button sidebar-toggle">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">{{ cartService.getItemCount() }}</span>
       </button>
       <button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
-      
+
 
     </div>
   </nav>
 </header>
 <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
   <ul>
-    <li>Home</li>
-    <li>About</li>
-    <li>Services</li>
-    <li>Contact</li>
-    <li (click)="myOrders()">My Orders</li>
+      <li (click)="myOrders()" class="margin">My Orders</li>
+      <i (click)="login()" class="fas fa-sign-in-alt go-to-cart-button margin" *ngIf="!userLoggedIn"></i>
+      <i (click)="logout()" class="fas fa-sign-out-alt go-to-cart-button margin" *ngIf="userLoggedIn"></i>
   </ul>
 </aside>
 <div class="product-list">
   <div class="product-card" *ngFor="let product of products">
-    <img [src]="product.productUrl" class="product-image"/>
+    <img [src]="product.productUrl" class="product-image" />
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p>Price: {{ product.price }} $</p>
@@ -43,4 +43,3 @@
     <button (click)="addToCart(product, quantity)" class="add-to-cart-button">Add to Cart</button>
   </div>
 </div>
-
