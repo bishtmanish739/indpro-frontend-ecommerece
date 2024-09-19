@@ -13,6 +13,17 @@ export class ProductComponent implements OnInit {
   quantity: number = 1;
 
   constructor(private productService: ProductService, public cartService: CartService,public router:Router) { }
+  myOrders(){
+    let token=localStorage.getItem('authToken');
+    if(token!=null){
+      this.router.navigate(['/my-orders']);
+
+    }
+    else{
+      alert('please login first to add something on your cart');
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
@@ -26,11 +37,36 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product, quantity: number) {
-    this.cartService.addToCart(product, quantity);
+    let token=localStorage.getItem('authToken');
+    if(token!=null){
+      this.cartService.addToCart(product, quantity);
+
+    }
+    else{
+      alert('please login first to add something on your cart');
+      this.router.navigate(['/login']);
+    }
+    
   }
 
   goToCart() {
-    // Navigate to cart page (assuming you have routing set up for it)
-    this.router.navigate(['/cart']); 
+    let token=localStorage.getItem('authToken');
+    if(token!=null){
+      console.log(this.cartService.getCartItems);
+
+      if(this.cartService.getTotalItemsInCart()>0){
+        this.router.navigate(['/cart']);
+      }
+      else{
+        alert('Your Cart is empty now Please add some items in your cart');
+
+      }
+     
+
+    }
+    else{
+      alert('please login first to add something on your cart');
+      this.router.navigate(['/login']);
+    }
   }
 }

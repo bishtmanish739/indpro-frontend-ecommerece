@@ -23,6 +23,10 @@ export class CartService {
   getCartItems() {
     return this.cartItems;
   }
-
-  // Optionally, you can add methods to clear the cart, etc.
+  getTotalItemsInCart(){
+    return this.cartItems.length;
+  }
+  clearCart(){
+    this.cartItems=[];
+  }
 }

@@ -1,0 +1,71 @@
+.orders-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .orders-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .order-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .order-status {
+    font-weight: bold;
+    color: green;
+  }
+  
+  .order-total {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .order-items {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  .product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  
+  .item-details h4 {
+    margin: 0;
+  }
+  
+  .item-details p {
+    margin: 2px 0;
+  }
+  
+  .status-pending {
+    color: orange;
+  }
+  

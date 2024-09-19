@@ -10,7 +10,10 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser(json:any): Observable<string> {
-    return this.http.post<string>(this.apiUrl,json);
+  loginUser(json:any): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.apiUrl,json);
   }
+}
+export interface LoginResponse{
+  token:string;
 }

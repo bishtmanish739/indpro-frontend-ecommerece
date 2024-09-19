@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterService } from '../register.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private registerService: RegisterService,private router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -42,11 +44,25 @@ export class RegisterComponent {
     }
     return null;
   }
+  loginUser(): void {
+    this.router.navigate(['/login'],{ replaceUrl: true });
+  }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      // Handle registration logic here
+      console.log('Form Submitted!', this.registerForm.value);
+      this.registerService.registerUser(this.registerForm.value).subscribe({
+        next: (userDetails) => {
+          console.log(userDetails);
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Registration error:', err);
+          alert('Registration failed. Please try again.');
+        }
+      });
+    } else {
+      console.log('Form is invalid');
     }
   }
 

@@ -6,6 +6,7 @@
       <li>About</li>
       <li>Services</li>
       <li>Contact</li>
+      <li (click)="myOrders()">My Orders</li>
       <button (click)="goToCart()" class="go-to-cart-button">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge">{{ cartService.getItemCount() }}</span>
