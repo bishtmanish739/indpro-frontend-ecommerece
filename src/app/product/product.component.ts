@@ -34,10 +34,29 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  isTokenExpired(token: string): boolean {
+    if (!token) return true;
+
+    // Decode the token and check expiration
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = new Date(0); // The 0 here is the key, which sets the date to the epoch
+    expirationDate.setUTCSeconds(payload.exp);
+
+    // Check if the token is expired
+    return expirationDate < new Date();
+  }
+
   ngOnInit(): void {
     let token=localStorage.getItem('authToken');
     if(token!=null){
-      this.userLoggedIn=true;
+      if(this.isTokenExpired(token)){
+        this.userLoggedIn=false;
+
+      }
+      else{
+        this.userLoggedIn=true;
+      }
+      
 
     }
     

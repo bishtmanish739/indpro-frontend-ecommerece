@@ -15,10 +15,32 @@ export class CartComponent implements OnInit {
   isProcessing: boolean = false;
 
   constructor(private cartService: CartService,private checkoutService:CheckoutService,private router:Router) { }
+  isTokenExpired(token: string): boolean {
+    if (!token) return true;
+
+    // Decode the token and check expiration
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = new Date(0); // The 0 here is the key, which sets the date to the epoch
+    expirationDate.setUTCSeconds(payload.exp);
+
+    // Check if the token is expired
+    return expirationDate < new Date();
+  }
 
   ngOnInit(): void {
+    let token=localStorage.getItem('authToken');
+    
+    if(token==null || this.isTokenExpired(token)){
+      alert("your session is expired please login again");
+      
+      this.router.navigate(['/login'],{replaceUrl:true});
+    }
+    else{
+     
+
     this.cartItems = this.cartService.getCartItems(); // Make sure you have this method in CartService
     this.total=this.cartService.getItemCount;
+    }
   }
   getTotal(): number {
     let total = 0;

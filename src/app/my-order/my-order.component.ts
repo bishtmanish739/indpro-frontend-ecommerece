@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-order',
@@ -10,10 +11,36 @@ export class MyOrderComponent {
 
   orders: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private routes:Router) {}
+
+  isTokenExpired(token: string): boolean {
+    if (!token) return true;
+
+    // Decode the token and check expiration
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = new Date(0); // The 0 here is the key, which sets the date to the epoch
+    expirationDate.setUTCSeconds(payload.exp);
+
+    // Check if the token is expired
+    return expirationDate < new Date();
+  }
 
   ngOnInit(): void {
-    this.fetchOrders();
+
+     let token=localStorage.getItem('authToken');
+    
+      if(token==null || this.isTokenExpired(token)){
+        alert("your session is expired please login again");
+        
+        this.routes.navigate(['/login'],{replaceUrl:true});
+      }
+      else{
+        this.fetchOrders();
+      }
+
+      
+    
+    
   }
 
   fetchOrders(): void {
